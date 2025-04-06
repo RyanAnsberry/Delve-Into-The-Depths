@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc7s66r8bchik"]
+
+[ext_resource type="Script" uid="uid://bmddcvqoaa0af" path="res://scripts/game.gd" id="1_iywne"]
+[ext_resource type="Texture2D" uid="uid://4erete8ccjm8" path="res://assets/sky_texture.png" id="2_p57ef"]
+[ext_resource type="PackedScene" uid="uid://b51dugnr6nr6w" path="res://scenes/earth_background.tscn" id="3_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cda0ckk32tvwt" path="res://scenes/earth.tscn" id="4_gee14"]
+[ext_resource type="PackedScene" uid="uid://dnt1ax2wn4ggu" path="res://scenes/player.tscn" id="5_0tnpc"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_iywne")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 2000.0
+offset_bottom = 2000.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p57ef")
+
+[node name="EarthBackground" parent="." instance=ExtResource("3_u5sy4")]
+position = Vector2(1, 0)
+
+[node name="Earth" parent="." instance=ExtResource("4_gee14")]
+position = Vector2(1, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_0tnpc")]
+position = Vector2(160, -52)
+move_speed = 80
+jump_force = 190
