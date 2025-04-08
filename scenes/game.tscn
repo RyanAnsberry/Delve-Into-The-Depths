@@ -1,15 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc7s66r8bchik"]
+[gd_scene load_steps=11 format=4 uid="uid://cc7s66r8bchik"]
 
 [ext_resource type="Script" uid="uid://bmddcvqoaa0af" path="res://scripts/game.gd" id="1_iywne"]
-[ext_resource type="Texture2D" uid="uid://4erete8ccjm8" path="res://assets/sky_texture.png" id="2_p57ef"]
+[ext_resource type="Texture2D" uid="uid://4erete8ccjm8" path="res://assets/texture/sky_texture.png" id="2_p57ef"]
+[ext_resource type="PackedScene" uid="uid://7siqefwyyk2m" path="res://scenes/ui.tscn" id="2_vtaks"]
 [ext_resource type="PackedScene" uid="uid://b51dugnr6nr6w" path="res://scenes/earth_background.tscn" id="3_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://cda0ckk32tvwt" path="res://scenes/earth.tscn" id="4_gee14"]
+[ext_resource type="PackedScene" uid="uid://cda0ckk32tvwt" path="res://scenes/dirt.tscn" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://dnt1ax2wn4ggu" path="res://scenes/player.tscn" id="5_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://1hif167q4klc" path="res://scenes/border_map.tscn" id="5_dinhu"]
+[ext_resource type="PackedScene" uid="uid://4ueaim1ufrtn" path="res://scenes/treasure.tscn" id="5_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://t6rochyjbair" path="res://scenes/highlight.tscn" id="6_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://dttethtae3d4u" path="res://scenes/treasure_chest.tscn" id="10_kvpfn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iywne")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="UI" parent="." instance=ExtResource("2_vtaks")]
+
+[node name="Sky" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,13 +28,78 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_p57ef")
 
-[node name="EarthBackground" parent="." instance=ExtResource("3_u5sy4")]
+[node name="Tilemaps" type="Node" parent="."]
+
+[node name="EarthBackground" parent="Tilemaps" instance=ExtResource("3_u5sy4")]
 position = Vector2(1, 0)
 
-[node name="Earth" parent="." instance=ExtResource("4_gee14")]
-position = Vector2(1, 0)
+[node name="BorderMap" parent="Tilemaps" instance=ExtResource("5_dinhu")]
+tile_map_data = PackedByteArray("AADh/wAAAAAAAAAAAADh/wEAAAAAAAAAAADh/wIAAAAAAAAAAADh/wMAAAAAAAAAAADh/wQAAAAAAAAAAADh/wUAAAAAAAAAAADh/wYAAAAAAAAAAADh/wcAAAAAAAAAAADh/wgAAAAAAAAAAADh/wkAAAAAAAAAAADh/woAAAAAAAAAAADh/wsAAAAAAAAAAADh/wwAAAAAAAAAAADh/w0AAAAAAAAAAADh/w4AAAAAAAAAAADh/w8AAAAAAAAAAADh/xAAAAAAAAAAAADh/xEAAAAAAAAAAADh/xIAAAAAAAAAAADh/xMAAAAAAAAAAADh/xQAAAAAAAAAAADh/xUAAAAAAAAAAADh/xYAAAAAAAAAAADh/xcAAAAAAAAAAADh/xgAAAAAAAAAAADh/xkAAAAAAAAAAADh/xoAAAAAAAAAAADh/xsAAAAAAAAAAADh/xwAAAAAAAAAAADh/x0AAAAAAAAAAADh/x4AAAAAAAAAAADh/x8AAAAAAAAAAADh/yAAAAAAAAAAAADh/yEAAAAAAAAAAADh/yIAAAAAAAAAAADh/yMAAAAAAAAAAADh/yQAAAAAAAAAAADh/yUAAAAAAAAAAADh/yYAAAAAAAAAAADh/ycAAAAAAAAAAADh/ygAAAAAAAAAAADh/ykAAAAAAAAAAADh/yoAAAAAAAAAAADh/ysAAAAAAAAAAADh/ywAAAAAAAAAAADh/y0AAAAAAAAAAADh/y4AAAAAAAAAAADh/y8AAAAAAAAAAADh/zAAAAAAAAAAAADh/zEAAAAAAAAAAADh/zIAAAAAAAAAAADh/zMAAAAAAAAAAADh/zQAAAAAAAAAAADh/zUAAAAAAAAAAADh/zYAAAAAAAAAAADh/zcAAAAAAAAAAADh/zgAAAAAAAAAAADh/zkAAAAAAAAAAADh/zoAAAAAAAAAAADh/zsAAAAAAAAAAADh/zwAAAAAAAAAAADh/z0AAAAAAAAAAADh/z4AAAAAAAAAAADh/z8AAAAAAAAAAADh/0AAAAAAAAAAAADh/0EAAAAAAAAAAADh/0IAAAAAAAAAAADh/0MAAAAAAAAAAADh/0QAAAAAAAAAAADh/0UAAAAAAAAAAADh/0YAAAAAAAAAAADh/0cAAAAAAAAAAADh/0gAAAAAAAAAAADh/0kAAAAAAAAAAADh/0oAAAAAAAAAAADh/0sAAAAAAAAAAADh/0wAAAAAAAAAAADh/00AAAAAAAAAAADh/04AAAAAAAAAAADh/08AAAAAAAAAAADh/1AAAAAAAAAAAADi/1AAAAAAAAAAAADj/1AAAAAAAAAAAADk/1AAAAAAAAAAAADl/1AAAAAAAAAAAADm/1AAAAAAAAAAAADn/1AAAAAAAAAAAADo/1AAAAAAAAAAAADp/1AAAAAAAAAAAADq/1AAAAAAAAAAAADr/1AAAAAAAAAAAADs/1AAAAAAAAAAAADt/1AAAAAAAAAAAADu/1AAAAAAAAAAAADv/1AAAAAAAAAAAADw/1AAAAAAAAAAAADx/1AAAAAAAAAAAADy/1AAAAAAAAAAAADz/1AAAAAAAAAAAAD0/1AAAAAAAAAAAAD1/1AAAAAAAAAAAAD2/1AAAAAAAAAAAAD3/1AAAAAAAAAAAAD4/1AAAAAAAAAAAAD5/1AAAAAAAAAAAAD6/1AAAAAAAAAAAAD7/1AAAAAAAAAAAAD8/1AAAAAAAAAAAAD9/1AAAAAAAAAAAAD+/1AAAAAAAAAAAAD//1AAAAAAAAAAAAAAAFAAAAAAAAAAAAABAFAAAAAAAAAAAAACAFAAAAAAAAAAAAADAFAAAAAAAAAAAAAEAFAAAAAAAAAAAAAFAFAAAAAAAAAAAAAGAFAAAAAAAAAAAAAHAFAAAAAAAAAAAAAIAFAAAAAAAAAAAAAJAFAAAAAAAAAAAAAKAFAAAAAAAAAAAAALAFAAAAAAAAAAAAAMAFAAAAAAAAAAAAANAFAAAAAAAAAAAAAOAFAAAAAAAAAAAAAPAFAAAAAAAAAAAAAQAFAAAAAAAAAAAAARAFAAAAAAAAAAAAASAFAAAAAAAAAAAAATAFAAAAAAAAAAAAAUAFAAAAAAAAAAAAAVAFAAAAAAAAAAAAAWAFAAAAAAAAAAAAAXAFAAAAAAAAAAAAAYAFAAAAAAAAAAAAAZAFAAAAAAAAAAAAAaAFAAAAAAAAAAAAAbAFAAAAAAAAAAAAAcAFAAAAAAAAAAAAAdAFAAAAAAAAAAAAAeAFAAAAAAAAAAAAAfAFAAAAAAAAAAAAAfAE8AAAAAAAAAAAAfAE4AAAAAAAAAAAAfAE0AAAAAAAAAAAAfAEwAAAAAAAAAAAAfAEsAAAAAAAAAAAAfAEoAAAAAAAAAAAAfAEkAAAAAAAAAAAAfAEgAAAAAAAAAAAAfAEcAAAAAAAAAAAAfAEYAAAAAAAAAAAAfAEUAAAAAAAAAAAAfAEQAAAAAAAAAAAAfAEMAAAAAAAAAAAAfAEIAAAAAAAAAAAAfAEEAAAAAAAAAAAAfAEAAAAAAAAAAAAAfAD8AAAAAAAAAAAAfAD4AAAAAAAAAAAAfAD0AAAAAAAAAAAAfADwAAAAAAAAAAAAfADsAAAAAAAAAAAAfADoAAAAAAAAAAAAfADkAAAAAAAAAAAAfADgAAAAAAAAAAAAfADcAAAAAAAAAAAAfADYAAAAAAAAAAAAfADUAAAAAAAAAAAAfADQAAAAAAAAAAAAfADMAAAAAAAAAAAAfADIAAAAAAAAAAAAfADEAAAAAAAAAAAAfADAAAAAAAAAAAAAfAC8AAAAAAAAAAAAfAC4AAAAAAAAAAAAfAC0AAAAAAAAAAAAfACwAAAAAAAAAAAAfACsAAAAAAAAAAAAfACoAAAAAAAAAAAAfACkAAAAAAAAAAAAfACgAAAAAAAAAAAAfACcAAAAAAAAAAAAfACYAAAAAAAAAAAAfACUAAAAAAAAAAAAfACQAAAAAAAAAAAAfACMAAAAAAAAAAAAfACIAAAAAAAAAAAAfACEAAAAAAAAAAAAfACAAAAAAAAAAAAAfAB8AAAAAAAAAAAAfAB4AAAAAAAAAAAAfAB0AAAAAAAAAAAAfABwAAAAAAAAAAAAfABsAAAAAAAAAAAAfABoAAAAAAAAAAAAfABkAAAAAAAAAAAAfABgAAAAAAAAAAAAfABcAAAAAAAAAAAAfABYAAAAAAAAAAAAfABUAAAAAAAAAAAAfABQAAAAAAAAAAAAfABMAAAAAAAAAAAAfABIAAAAAAAAAAAAfABEAAAAAAAAAAAAfABAAAAAAAAAAAAAfAA8AAAAAAAAAAAAfAA4AAAAAAAAAAAAfAA0AAAAAAAAAAAAfAAwAAAAAAAAAAAAfAAsAAAAAAAAAAAAfAAoAAAAAAAAAAAAfAAkAAAAAAAAAAAAfAAgAAAAAAAAAAAAfAAcAAAAAAAAAAAAfAAYAAAAAAAAAAAAfAAUAAAAAAAAAAAAfAAQAAAAAAAAAAAAfAAMAAAAAAAAAAAAfAAIAAAAAAAAAAAAfAAEAAAAAAAAAAAAfAAAAAAAAAAAAAAA=")
+
+[node name="Dirt" parent="Tilemaps" instance=ExtResource("4_gee14")]
+
+[node name="Treasure" parent="Tilemaps" instance=ExtResource("5_u5sy4")]
+tile_map_data = PackedByteArray("AAAGAAoAAAAAAAAAAAD8/wgAAAAAAAAAAADj/wEAAAAAAAAAAADl/wgAAAAAAAAAAADr/wMAAAAAAAAAAADv/w0AAAAAAAAAAADs/xIAAAAAAAAAAAD1/xEAAAAAAAAAAAD2/wQAAAAAAAAAAAADAA0AAAAAAAAAAAD//xIAAAAAAAAAAAAQABMAAAAAAAAAAAANAA4AAAAAAAAAAAAZAA0AAAAAAAAAAAAbAAcAAAAAAAAAAAASAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAIABMAAAAAAAAAAAD2/xAAAAAAAAAAAADn/w4AAAAAAAAAAAAaABQAAAAAAAAAAAAaABMAAAAAAAAAAAAbABUAAAAAAAAAAAATABAAAAAAAAAAAAAUAA8AAAAAAAAAAAD8/w8AAAAAAAAAAAD9/xAAAAAAAAAAAADl/xUAAAABAAAAAADp/xIAAAABAAAAAAD0/xUAAAABAAAAAADr/w0AAAABAAAAAAD9/xQAAAABAAAAAAABAA8AAAABAAAAAAAFABMAAAABAAAAAAAPABAAAAABAAAAAAAYABQAAAABAAAAAAAcAAsAAAABAAAAAAAKAAwAAAABAAAAAADx/xEAAAABAAAAAADm/x0AAAABAAAAAADq/yEAAAABAAAAAAD5/xoAAAABAAAAAAAJABsAAAABAAAAAAAMACEAAAABAAAAAAAGACUAAAABAAAAAADz/yQAAAABAAAAAAAZACkAAAABAAAAAAAZAB0AAAABAAAAAADn/zMAAAABAAAAAAD+/y4AAAABAAAAAAARADQAAAABAAAAAAAEADkAAAABAAAAAADu/0AAAAABAAAAAAD7/zsAAAABAAAAAAAaAEQAAAABAAAAAAD6/0kAAAABAAAAAAAGAEwAAAABAAAAAAAQAEIAAAABAAAAAAAPAEEAAAABAAAAAAD9/zQAAAABAAAAAAD+/zUAAAABAAAAAAAKADIAAAABAAAAAADn/ycAAAABAAAAAADk/z0AAAAAAAEAAADq/zUAAAAAAAEAAADk/ywAAAAAAAEAAAD+/0EAAAAAAAEAAAD2/z4AAAAAAAEAAAADADQAAAAAAAEAAAAYADcAAAAAAAEAAAAYAEIAAAAAAAEAAAAcAEsAAAAAAAEAAAAOAEsAAAAAAAEAAAACAEUAAAAAAAEAAADz/0sAAAAAAAEAAADl/0oAAAAAAAEAAADn/0EAAAABAAEAAAACAEoAAAABAAEAAAAJAD8AAAABAAEAAAAaADEAAAACAAAAAAD//z4AAAACAAAAAADx/zAAAAACAAAAAAAVADgAAAACAAAAAAD8/ykAAAACAAAAAAAQACgAAAACAAAAAADw/zkAAAACAAEAAAAOADUAAAACAAEAAAAEACoAAAAAAAAAAAARACUAAAAAAAAAAAARABkAAAAAAAAAAAABABgAAAAAAAAAAAABABkAAAAAAAAAAAD2/yMAAAAAAAAAAADq/x0AAAAAAAAAAADm/yQAAAAAAAAAAADr/zMAAAAAAAAAAADk/zkAAAAAAAAAAADv/ykAAAAAAAAAAADu/yMAAAABAAAAAAAAACQAAAABAAAAAAAFACAAAAACAAAAAAA=")
+
+[node name="Highlight" parent="Tilemaps" instance=ExtResource("6_u5sy4")]
+
+[node name="TreasureChests" type="Node" parent="."]
+
+[node name="TreasureChest" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(296, 200)
+
+[node name="TreasureChest2" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(72, 280)
+
+[node name="TreasureChest3" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(360, 312)
+
+[node name="TreasureChest4" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(-408, 296)
+
+[node name="TreasureChest5" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(-120, 360)
+
+[node name="TreasureChest6" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(-136, 536)
+
+[node name="TreasureChest7" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(264, 520)
+
+[node name="TreasureChest8" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(-192, 744)
+
+[node name="TreasureChest9" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(312, 744)
+
+[node name="TreasureChest10" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(-152, 904)
+
+[node name="TreasureChest11" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(296, 984)
+
+[node name="TreasureChest12" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(-248, 1128)
+
+[node name="TreasureChest13" parent="TreasureChests" instance=ExtResource("10_kvpfn")]
+position = Vector2(216, 1128)
 
 [node name="Player" parent="." instance=ExtResource("5_0tnpc")]
-position = Vector2(160, -52)
+z_index = 10
+position = Vector2(152, -32)
 move_speed = 80
-jump_force = 190
+jump_force = 160
+
+[connection signal="collected" from="TreasureChests/TreasureChest" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest2" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest3" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest4" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest5" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest6" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest7" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest8" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest9" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest10" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest11" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest12" to="." method="_on_treasure_chest_collected"]
+[connection signal="collected" from="TreasureChests/TreasureChest13" to="." method="_on_treasure_chest_collected"]

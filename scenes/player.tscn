@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://dnt1ax2wn4ggu"]
+[gd_scene load_steps=20 format=3 uid="uid://dnt1ax2wn4ggu"]
 
 [ext_resource type="Script" uid="uid://b43sk65flv5l8" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://cyiahbrocpt8f" path="res://assets/Dwarf.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cyiahbrocpt8f" path="res://assets/texture/Dwarf.png" id="2_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_qhqgy")
@@ -10,6 +10,10 @@ region = Rect2(208, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
 atlas = ExtResource("2_qhqgy")
 region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("2_qhqgy")
@@ -70,6 +74,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"climb",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}],
+"loop": true,
+"name": &"climb_idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -147,8 +159,9 @@ script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fulsm")
-animation = &"run"
-frame_progress = 0.218474
+animation = &"climb"
+frame_progress = 0.461155
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=4 uid="uid://dqvxagirvp3b4"]
+
+[ext_resource type="Texture2D" uid="uid://0sbqckown2xt" path="res://assets/texture/Ladder.png" id="1_j3iaj"]
+[ext_resource type="Script" uid="uid://c10bphoy75qg6" path="res://scripts/ladders.gd" id="2_ce2x0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce2x0"]
+texture = ExtResource("1_j3iaj")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ggge1"]
+sources/0 = SubResource("TileSetAtlasSource_ce2x0")
+
+[node name="Ladders" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAAHAP//AAAAAAAAAAAHAP7/AAAAAAAAAAAGAP//AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAJAP//AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_ggge1")
+script = ExtResource("2_ce2x0")

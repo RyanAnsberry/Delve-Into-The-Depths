@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://t6rochyjbair"]
+
+[ext_resource type="Texture2D" uid="uid://tdck4ioi0mq7" path="res://assets/texture/border.png" id="1_gxlip"]
+[ext_resource type="Script" uid="uid://c7ogws7o2kqpd" path="res://scripts/highlight.gd" id="2_mffkr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mffkr"]
+texture = ExtResource("1_gxlip")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7ogle"]
+sources/0 = SubResource("TileSetAtlasSource_mffkr")
+
+[node name="Highlight" type="TileMapLayer"]
+tile_set = SubResource("TileSet_7ogle")
+script = ExtResource("2_mffkr")

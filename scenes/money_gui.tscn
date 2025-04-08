@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://gyu6kn7tloas"]
+
+[ext_resource type="Texture2D" uid="uid://b731ooupclybf" path="res://assets/texture/Gold_Coin.png" id="1_x4jx1"]
+[ext_resource type="Script" uid="uid://bll2jm4f00djv" path="res://scripts/money_gui.gd" id="1_xnklo"]
+[ext_resource type="FontFile" uid="uid://c1h8iux4up51y" path="res://assets/font/Kenney Pixel Square.ttf" id="2_yev5y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gdt2y"]
+font = ExtResource("2_yev5y")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_wm3ai"]
+font = ExtResource("2_yev5y")
+font_color = Color(0.780392, 0.694118, 0.376471, 1)
+outline_size = 3
+outline_color = Color(0.0784314, 0.0705882, 0.117647, 1)
+
+[node name="MoneyGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xnklo")
+
+[node name="Coin" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x4jx1")
+
+[node name="X" type="Label" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 58.0
+offset_bottom = 33.0
+text = "X"
+label_settings = SubResource("LabelSettings_gdt2y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = -6.0
+offset_right = 100.0
+offset_bottom = 42.0
+text = "999"
+label_settings = SubResource("LabelSettings_wm3ai")
+horizontal_alignment = 1
+vertical_alignment = 1

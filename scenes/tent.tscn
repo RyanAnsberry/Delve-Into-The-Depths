@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcikdjjb62uou"]
+
+[ext_resource type="Texture2D" uid="uid://gniverh24l86" path="res://assets/texture/Tent.png" id="1_h6gn8"]
+
+[node name="Tent" type="Sprite2D"]
+texture = ExtResource("1_h6gn8")
